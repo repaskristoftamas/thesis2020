@@ -1,0 +1,29 @@
+<h1 class="h" mat-dialog-title>Eladók</h1>
+
+<div *ngFor="let tokenSeller of this.tokenSellers">
+    <table class="tab">
+        <tr>
+            <th>Eladó</th>
+            <th>Eladó mennyiség</th>
+            <th>Vásárolandó mennyiség</th>
+        </tr>
+        <tr>
+            <td>{{tokenSeller.investorAddress}}</td>
+            <td>{{tokenSeller.tokenForSale}}</td>
+            <td>
+                <input class="inpin" [(ngModel)]="tokenSeller.ART" type="tokenSeller.ART" id="tokenSeller.ART" name="tokenSeller.ART"
+                required pattern="[0-9]*" #ART="ngModel">
+            </td>
+            <td><button class="btn" [disabled]="ART.invalid" (click)="transferTokenForSale(this.artwork.artworkAddress, tokenSeller.investorAddress, tokenSeller.ART)">Vásárol</button></td>
+        </tr>
+    </table>
+
+    <div *ngIf="ART.invalid && (ART.dirty || ART.touched)" class="alert alert-danger">
+        <div class="failbuy" *ngIf="ART.errors.required">A megvárásolni kívánt tokenek mennyiségét kötelező megadni!</div>
+        <div class="failbuy" *ngIf="ART.errors.pattern">A megvásárolni kívánt tokenek mennyisége csak szám lehet!</div>
+    </div>
+</div>
+
+<div class="dialogactions" mat-dialog-actions>
+    <button class="dialogbtn"  mat-button mat-dialog-close>Bezárás<source media="(min-width: )" srcset=""></button>
+</div>

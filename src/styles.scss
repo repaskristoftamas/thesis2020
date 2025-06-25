@@ -1,0 +1,121 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { 
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: rgba($color: #d2b48c, $alpha: 0.5);
+}
+
+.h{
+    text-align: center;
+}
+.dialogactions{
+    display: flex;
+    justify-content: center;
+}
+.dialogbtn{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    padding: 10px;
+    transition: al linear 0.2s;
+    font-size: large;
+    background-color: rgba($color: #fa8072, $alpha: 1.0);
+    &:hover {
+        cursor: pointer;
+        color: white;
+        background-color: salmon;
+    }
+}
+
+.address{
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+    color: green;
+    padding: 10px;
+    background-color: rgba($color: #d2b48c, $alpha: 0.0);
+}
+
+.btn{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    padding: 10px;
+    transition: al linear 0.2s;
+    font-size: large;
+    background-color: rgba($color: #fa8072, $alpha: 0.5);
+    &:hover {
+        cursor: pointer;
+        color: white;
+        background-color: salmon;
+    }
+}
+
+
+.ethbtn{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    padding: 10px;
+    transition: al linear 0.2s;
+    font-size: large;
+    width: 100%;
+    background-color: rgba($color: #fa8072, $alpha: 0.5);
+    &:hover {
+        cursor: pointer;
+        color: white;
+        background-color: salmon;
+    }
+}
+.inpin{
+    font-size: large;
+    background-color: rgba($color: #fa8072, $alpha: 0.5); 
+}
+.inpout{
+    font-size: large;
+    width: 450px;
+}
+
+.panel{
+    background-color: rgba($color: #7a6664, $alpha: 1.0);
+    z-index: 1;
+}
+.paneltitle{
+    font-size: large;
+}
+.tab{
+    text-align: left;
+    font-size: medium;
+    padding-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    th{
+        background-color: salmon;
+        width: max-content;
+        text-align: center;
+    }
+    tr{
+        font-size: medium;
+    }
+    td{
+        background-color: rgba($color: #fa8072, $alpha: 0.5);
+        font-size: medium;
+        padding: 5px;
+    }
+}
+.tabletitle{
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+    color: green;
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+.failadmin{
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+    color: yellow;
+    padding-top: 10px;
+}

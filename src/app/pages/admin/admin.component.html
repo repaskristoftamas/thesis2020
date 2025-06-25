@@ -1,0 +1,90 @@
+<div *ngIf="this.isAdmin == false" id="isnotAdmin">
+    Ez a funkció csak az okos szerződés feltöltőjének érhető el!
+</div>
+<div *ngIf="this.isAdmin == true">
+    <div class="address">Az okos szerződés tuladonosa: {{this.owner}}</div>
+    <table class="tab">
+        <tr>
+            <td class="address">Az okosszerződés Ethereum balansza:</td>
+            <td class="address">{{this.balance}}</td>
+        </tr>
+        <tr>
+            <td colspan="2"><button class="ethbtn" [disabled]="this.balance == 0" (click)="withdrawToOwner()">Ethereum kivétele a szerződésből</button></td>
+        </tr>
+    </table>
+
+    <table class="tab" id="newowner" *ngFor="let owner of owners">
+        <tr>
+            <td class="address">Új tulajdonos címe:</td>
+            <td><input class="inpout" placeholder="0x018Bebe1a319349CeD26eB5835678eEA91180738" [(ngModel)]="owner.address" type="owner.address" id="owner.address" name="owner.address"
+                required pattern="^[a-zA-Z0-9]+$" minlength="42" maxlength="42" #address="ngModel"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button class="ethbtn" [disabled]="address.invalid" (click)="changeOwner(owner.address)">Átruházás</button></td>
+        </tr>
+    </table>
+
+    <div id="isnotExist" *ngIf="this.isExist == false">
+        Még nincs feltöltve műalkotás.
+    </div>
+    <div *ngIf="this.isExist == true">
+        <div class="tabletitle">MŰALKOTÁSOK</div>
+        <div *ngFor="let artwork of artworks">
+
+            <table class="tab">
+                <mat-accordion>
+                    <mat-expansion-panel  class="panel" (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title class="paneltitle">
+                                {{artwork.creator}}: {{artwork.title}}
+                              </mat-panel-title>
+                        </mat-expansion-panel-header>
+                <tr>
+                    <th>Tulajdonság</th>
+                    <th>Érték</th>
+                </tr>
+                <tr>
+                    <td>Mű:</td>
+                    <td>{{artwork.title}}</td>
+                </tr>
+                <tr>
+                    <td>Alkotó:</td>
+                    <td>{{artwork.creator}}</td>
+                </tr>
+                <tr>
+                    <td>Ár ($):</td>
+                    <td>{{artwork.price}}</td>
+                </tr>
+                <tr>
+                    <td>Token árfolyama ($ / db):</td>
+                    <td>{{artwork.tokenPrice}}</td>
+                </tr>
+                <tr>
+                    <td>Árverő:</td>
+                    <td>{{artwork.auctioneer}}</td>
+                </tr>
+                <tr>
+                    <td>Mű címe a blokkláncon:</td>
+                    <td>{{artwork.artworkAddress}}</td>
+                </tr>
+                <tr>
+                    <td>Százalék: <input class="inpin" [(ngModel)]="artwork.percent" type="artwork.percent" id="artwork.percent" name="artwork.percent"
+                        required pattern="[0-9]*" #percent="ngModel"></td>
+                    <td>
+                        <button class="btn" [disabled]="percent.invalid" (click)="priceIncreasingBot(artwork.artworkAddress, artwork.percent)">Műalkotás árának növelése</button>
+                        <button class="btn" [disabled]="percent.invalid" (click)="priceDecreasingBot(artwork.artworkAddress, artwork.percent)">Műalkotás árának csökkentése</button>
+                    </td>
+                </tr>
+                <div *ngIf="percent.invalid && (percent.dirty || percent.touched)" class="alert alert-danger">
+                    <div class="failadmin" *ngIf="percent.errors.required">Az árnövelés/árcsökkentés százalékát kötelező megadni!</div>
+                    <div class="failadmin" *ngIf="percent.errors.pattern">Az árnövelés/árcsökkentés százaléka csak szám lehet!</div>
+                </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </table>
+
+
+        </div>
+    </div>
+</div>

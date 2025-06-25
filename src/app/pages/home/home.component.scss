@@ -1,0 +1,22 @@
+#isnotExist{
+    text-align: center;
+    font-weight: bolder;
+    font-size: large;
+    color: red;
+    padding: 10px;
+}
+.buybtn{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    padding: 10px;
+    transition: al linear 0.2s;
+    font-size: large;
+    width: 100%;
+    background-color: rgba($color: #fa8072, $alpha: 0.5);
+    &:hover {
+        cursor: pointer;
+        color: white;
+        background-color: salmon;
+    }
+}

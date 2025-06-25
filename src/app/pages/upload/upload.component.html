@@ -1,0 +1,104 @@
+<div class="address">Bejelentkezett MetaMask account: {{this.account}}</div>
+<div id="uploadformdiv">
+    <form action="/action_page.php" class="uploadparams">
+        <label for="title">Mű:
+            <input [(ngModel)]="artwork.title" type="text" id="title" name="title"
+                    required minlength="3" #title="ngModel"
+                    pattern="^[a-zA-Z0-9àáâäãåąčćęèéêëėįìíîïłńòóőôöõøùúûüűųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÓÔÖŐØÙÚÛÜŰŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð, .'-]+$">
+        </label>
+        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+            <div class="failupload" *ngIf="title.errors.required">A műalkotás címét kötelező megadni! Ha ismeretlen, akkor ezt add meg!</div>
+            <div class="failupload" *ngIf="title.errors.minlength">A műalkotás címe legalább 3 karakter hosszú kell legyen!</div>
+            <div class="failupload" *ngIf="title.errors.pattern">A műalkotás címe csak betűket, számokat, pontot (.), aposztrófot (') és kötőjelet (-) tartalmazhat!</div>
+        </div>
+
+        <br>
+
+        <label for="creator">Alkotó:
+            <input [(ngModel)]="artwork.creator" type="text" id="creator" name="creator"
+                    required minlength="3" #creator="ngModel"
+                    pattern="^[a-zA-Z0-9àáâäãåąčćęèéêëėįìíîïłńòóőôöõøùúûüűųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÓÔÖŐØÙÚÛÜŰŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð, .'-]+$">
+        </label>
+        <div *ngIf="creator.invalid && (creator.dirty || creator.touched)" class="alert alert-danger">
+            <div class="failupload" *ngIf="creator.errors.required">A műalkotás készítőjét kötelező megadni! Ha ismeretlen, akkor ezt add meg!</div>
+            <div class="failupload" *ngIf="creator.errors.minlength">A műalkotás készítőjének neve legalább 3 karakter hosszú kell legyen!</div>
+            <div class="failupload" *ngIf="creator.errors.pattern">A műalkotás készítőjének neve csak betűket, számokat, pontot (.), aposztrófot (') és kötőjelet (-) tartalmazhat!</div>
+        </div>
+
+        <br>
+
+        <label for="kind">Műfaj:
+            <input [(ngModel)]="artwork.kind" type="text" id="kind" name="kind"
+                    required minlength="3" #kind="ngModel"
+                    pattern="^[a-zA-Z0-9àáâäãåąčćęèéêëėįìíîïłńòóőôöõøùúûüűųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÓÔÖŐØÙÚÛÜŰŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð, .'-]+$">
+        </label>
+        <div *ngIf="kind.invalid && (kind.dirty || kind.touched)" class="alert alert-danger">
+            <div class="failupload" *ngIf="kind.errors.required">A műalkotás műfaját kötelező megadni!</div>
+            <div class="failupload" *ngIf="kind.errors.minlength">A műalkotás műfajának neve legalább 3 karakter hosszú kell legyen!</div>
+            <div class="failupload" *ngIf="kind.errors.pattern">A műalkotás műfajának neve csak betűket, számokat, pontot (.), aposztrófot (') és kötőjelet (-) tartalmazhat!</div>
+        </div>
+
+        <br>
+
+        <label for="materials">Alapanyagok:
+            <input [(ngModel)]="artwork.materials" type="text" id="materials" name="materials"
+                    required minlength="2" #materials="ngModel"
+                    pattern="^[a-zA-Z0-9àáâäãåąčćęèéêëėįìíîïłńòóőôöõøùúûüűųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÓÔÖŐØÙÚÛÜŰŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð, .'-]+$">
+        </label>
+        <div *ngIf="materials.invalid && (materials.dirty || materials.touched)" class="alert alert-danger">
+            <div class="failupload" *ngIf="materials.errors.required">A műalkotás alapanyagait kötelező megadni! Ha ismeretlen, akkor ezt add meg!</div>
+            <div class="failupload" *ngIf="materials.errors.minlength">A műalkotás alapanyagának neve legalább 2 karakter hosszú kell legyen!</div>
+            <div class="failupload" *ngIf="materials.errors.pattern">A műalkotás műfajának neve csak betűket, számokat, pontot (.), aposztrófot (') és kötőjelet (-) tartalmazhat!</div>
+        </div>
+
+        <br>
+
+        <label for="estimatedInterval">Készült (év / intervallum):
+            <input [(ngModel)]="artwork.estimatedInterval" type="text" id="estimatedInterval" name="estimatedInterval"
+                    required minlength="3" required maxlength="10" #estimatedInterval="ngModel"
+                    pattern="\d{3}|\d{4}|\d{3}-\d{3}|\d{3}-d{4}|\d{4}-\d{4}|ismeretlen">
+        </label>
+        <div *ngIf="estimatedInterval.invalid && (estimatedInterval.dirty || estimatedInterval.touched)" class="alert alert-danger">
+            <div class="failupload" *ngIf="estimatedInterval.errors.required">A műalkotás készítésének becsült intervallumát vagy konkrét évszámát kötelező megadni! Ha ismeretlen, akkor ezt add meg!</div>
+            <div class="failupload" *ngIf="estimatedInterval.errors.minlength">A műalkotás készítésének konkrét évszáma legalább 3, a becsült intervalluma legalább 7 karakter hosszú kell legyen!</div>
+            <div class="failupload" *ngIf="estimatedInterval.errors.maxlength">A műalkotás készítésének konkrét évszáma legfeljebb 4, a becsült intervalluma legfeljebb 9 karakter hosszú kell legyen!</div>
+            <div class="failupload" *ngIf="estimatedInterval.errors.pattern">Intervallum esetén a megengedett formátumok: ééé-ééé, ééé-éééé, éééé-éééé! Konkrét évszám esetén a megengedett formátumok: ééé, éééé!</div>
+        </div>
+
+        <br>
+
+        <label for="location">Fellelhetőség:
+            <input [(ngModel)]="artwork.location" type="text" id="location" name="location"
+                    required minlength="3" #location="ngModel"
+                    pattern="^[a-zA-Z0-9àáâäãåąčćęèéêëėįìíîïłńòóőôöõøùúûüűųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÓÔÖŐØÙÚÛÜŰŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð, .'-]+$">
+        </label>
+        <div *ngIf="location.invalid && (location.dirty || location.touched)" class="alert alert-danger">
+            <div class="failupload" *ngIf="location.errors.required">A műalkotás helyét kötelező megadni!</div>
+            <div class="failupload" *ngIf="location.errors.minlength">A műalkotás helyének neve legalább 3 karakter hosszú kell legyen!</div>
+            <div class="failupload" *ngIf="location.errors.pattern">A műalkotás helyének neve csak betűket, számokat, pontot (.), aposztrófot (') és kötőjelet (-) tartalmazhat!</div>
+        </div>
+
+        <br>
+
+        <label for="price">Ár ($):
+            <input [(ngModel)]="artwork.price" type="text" id="price" name="price"
+                    (change)="inputLoaded()" required pattern="[0-9]*" #price="ngModel">
+        </label>
+        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+            <div class="failupload" *ngIf="price.errors.required">Az árat kötelező megadni!</div>
+            <div class="failupload" *ngIf="price.errors.pattern">Az ár csak számokat tartalmazhat!</div>
+        </div>
+
+        <br>
+
+        <form action="action_page.php">
+            <label for="tokenQuantity">Token mennyisége:</label>
+            <select [(ngModel)]="artwork.tokenQuantity" name="tokenQuantity" id="tokenQuantity">
+                <option *ngFor="let number of numbers">{{number.value}}</option>
+            </select>
+        </form>
+
+      <input type="submit" value="Feltöltés" [disabled]="title.invalid || creator.invalid || location.invalid || kind.invalid || price.invalid"
+      (click)="uploadNewArtwork()" class="uploadNewArtworkBtn">
+    </form>
+  </div>

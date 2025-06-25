@@ -1,0 +1,98 @@
+<div class="address">Bejelentkezett MetaMask account: {{this.account}}</div>
+<div id="isnotExist" *ngIf="this.isExist == false">
+    Még nem vásároltál egyetlen aukciót sem.
+</div>
+<div *ngIf="this.isExist == true">
+    <div class="tabletitle">MŰALKOTÁSOK</div>
+    <div *ngFor="let artwork of artworks; let i = index;">
+        <table class="tab">
+            <mat-accordion>
+                <mat-expansion-panel  class="panel" (opened)="panelOpenState = true"
+                                     (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="paneltitle">
+                            {{artwork.creator}}: {{artwork.title}}
+                          </mat-panel-title>
+                    </mat-expansion-panel-header>
+            <tr>
+                <th>Tulajdonság</th>
+                <th>Érték</th>
+            </tr>
+            <tr>
+                <td>Mű:</td>
+                <td>{{artwork.title}}</td>
+            </tr>
+            <tr>
+                <td>Alkotó:</td>
+                <td>{{artwork.creator}}</td>
+            </tr>
+            <tr>
+                <td>Műfaj:</td>
+                <td>{{artwork.kind}}</td>
+            </tr>
+            <tr>
+                <td>Alapanyagok:</td>
+                <td>{{artwork.materials}}</td>
+            </tr>
+            <tr>
+                <td>Készült (év / intervallum):</td>
+                <td>{{artwork.estimatedInterval}}</td>
+            </tr>
+            <tr>
+                <td>Fellelhetőség</td>
+                <td>{{artwork.location}}</td>
+            </tr>
+            <tr>
+                <td>Ár ($):</td>
+                <td>{{artwork.price}}</td>
+            </tr>
+            <tr>
+                <td>Token árfolyama ($ / db):</td>
+                <td>{{artwork.tokenPrice}}</td>
+            </tr>
+            <tr>
+                <td>Szabad tokenek mennyisége:</td>
+                <td>{{artwork.tokenQuantity}}</td>
+            </tr>
+            <tr>
+                <td>Egyenleg:</td>
+                <td>{{artwork.investor.investorBalance}}</td>
+            </tr>
+            <tr>
+                <td>Piacon listázott:</td>
+                <td>{{artwork.investor.tokenForSale}}</td>
+            </tr>
+            <tr>
+                <td>Árverő:</td>
+                <td>{{artwork.auctioneer}}</td>
+            </tr>
+            <tr>
+                <td>Mű címe a blokkláncon:</td>
+                <td>{{artwork.artworkAddress}}</td>
+            </tr>
+            <tr>
+                <td>Mennyiség:
+                    <input class="inpin" [(ngModel)]="artwork.ART" type="artwork.ART" id="artwork.ART" name="artwork.ART"
+                    required pattern="[0-9]*" #ART="ngModel"></td>
+                <td><button class="ethbtn" [disabled]="ART.invalid" (click)="invest(artwork.artworkAddress, artwork.ART)">Vásárol</button></td>
+            </tr>
+            <tr>
+                <td>Mennyiség:
+                    <input class="inpin" [(ngModel)]="artwork.tokenForSale" type="artwork.tokenForSale" id="artwork.tokenForSale" name="artwork.tokenForSale"
+                            required pattern="[0-9]*" #tokenForSale="ngModel"></td>
+                <td><button class="ethbtn" [disabled]="tokenForSale.invalid" (click)="approveTokenForSale(artwork.artworkAddress, artwork.tokenForSale)">Kínál</button></td>
+            </tr>
+            <div *ngIf="ART.invalid && (ART.dirty || ART.touched)" class="alert alert-danger">
+                <div class="failadmin" *ngIf="ART.errors.required">A megvárásolni kívánt tokenek mennyiségét kötelező megadni!</div>
+                <div class="failadmin" *ngIf="ART.errors.pattern">A megvásárolni kívánt tokenek mennyisége csak szám lehet!</div>
+            </div>
+    
+            <div *ngIf="tokenForSale.invalid && (tokenForSale.dirty || tokenForSale.touched)" class="alert alert-danger">
+                <div class="failadmin" *ngIf="tokenForSale.errors.required">Az eladásra kínált tokenek mennyiségét kötelező megadni!</div>
+                <div class="failadmin" *ngIf="tokenForSale.errors.pattern">Az eladásra kínált tokenek mennyisége csak szám lehet!</div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="address">Bejelentkezett MetaMask account: {{this.account}}</div>
+<div id="isnotExist" *ngIf="this.isExist == false">
+    Még nincs feltöltve aukciód.
+</div>
+<div *ngIf="this.isExist == true">
+    <div class="tabletitle">MŰALKOTÁSOK</div>
+    <div *ngFor="let artwork of artworks">
+        <table class="tab">
+            <mat-accordion>
+                <mat-expansion-panel  class="panel" (opened)="panelOpenState = true"
+                                     (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="paneltitle">
+                            {{artwork.creator}}: {{artwork.title}}
+                          </mat-panel-title>
+                    </mat-expansion-panel-header>
+            <tr>
+                <th>Tulajdonság</th>
+                <th>Érték</th>
+            </tr>
+            <tr>
+                <td>Mű:</td>
+                <td>{{artwork.title}}</td>
+            </tr>
+            <tr>
+                <td>Alkotó:</td>
+                <td>{{artwork.creator}}</td>
+            </tr>
+            <tr>
+                <td>Műfaj:</td>
+                <td>{{artwork.kind}}</td>
+            </tr>
+            <tr>
+                <td>Alapanyagok:</td>
+                <td>{{artwork.materials}}</td>
+            </tr>
+            <tr>
+                <td>Készült (év / intervallum):</td>
+                <td>{{artwork.estimatedInterval}}</td>
+            </tr>
+            <tr>
+                <td>Fellelhetőség:</td>
+                <td>{{artwork.location}}</td>
+            </tr>
+            <tr>
+                <td>Ár ($):</td>
+                <td>{{artwork.price}}</td>
+            </tr>
+            <tr>
+                <td>Token árfolyama ($ / db):</td>
+                <td>{{artwork.tokenPrice}}</td>
+            </tr>
+            <tr>
+                <td>Eredeti token mennyiség:</td>
+                <td>{{artwork.originalTokenQuantity}}</td>
+            </tr>
+            <tr>
+                <td>Aktuális token mennyiség:</td>
+                <td>{{artwork.tokenQuantity}}</td>
+            </tr>
+            <tr>
+                <td>Eladott token mennyiség:</td>
+                <td>{{artwork.originalTokenQuantity - artwork.tokenQuantity}}</td>
+            </tr>
+            <tr>
+                <td>Mű címe a blokkláncon:</td>
+                <td>{{artwork.artworkAddress}}</td>
+            </tr>
+            <tr>
+                <td>A műalkotás Ethereum balansza:</td>
+                <td>{{artwork.ethBalance}}</td>
+            </tr>
+            <tr>
+                <td colspan="2"><button class="ethbtn" [disabled]="artwork.ethBalance == 0" (click)="withdrawToAuctioneer(artwork.artworkAddress)">Ethereum kivétele a szerződésből</button></td>
+            </tr>
+        </mat-expansion-panel>
+    </mat-accordion>
+        </table>
+        
+    </div>
+</div>
